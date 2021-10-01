@@ -25,12 +25,13 @@ namespace LibraryGame.ViewModel
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-
+                int newIndex = e.NewStartingIndex;
+                GameRepository.AddRecordDB(Games[newIndex]);
             }
             else if (e.Action == NotifyCollectionChangedAction.Remove)
             {
                 List<Game> TempGamesList = e.OldItems.OfType<Game>().ToList();
-                GameRepository.DeleteRecord(TempGamesList[0].Id);
+                GameRepository.DeleteRecordDB(TempGamesList[0].Id);
             }else if(e.Action == NotifyCollectionChangedAction.Replace)
             {
 
@@ -54,6 +55,16 @@ namespace LibraryGame.ViewModel
                 }
                 i++;
             }
+        }
+
+        public void AddRecord(Game game)
+        {
+            if (game == null)
+            {
+                throw new ArgumentNullException("Error: argument null");
+            }
+
+            Games.Add(game);
         }
     }
 }

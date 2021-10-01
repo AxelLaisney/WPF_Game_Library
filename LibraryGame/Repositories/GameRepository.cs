@@ -39,12 +39,11 @@ namespace LibraryGame.Repositories
                     game.ReleaseDate = data.GetDateTime(4);
                     listGames.Add(game);
                 }
-                conn.Close();
                 return listGames;
             }
         }
 
-        public void DeleteRecord(int id)
+        public void DeleteRecordDB(int id)
         {
             using (SqliteConnection conn = new SqliteConnection(Properties.Settings.Default.connString))
             {
@@ -54,13 +53,29 @@ namespace LibraryGame.Repositories
                 }
 
                 conn.Open();
-                SqliteCommand query = new SqliteCommand("DELETE FROM GAMES WHERE Id = $id", conn);
+                SqliteCommand query = new SqliteCommand("DELETE FROM Games WHERE Id = $id", conn);
                 query.Parameters.AddWithValue("$id", id);
                 query.ExecuteNonQuery();
-                conn.Close();
+            }
+        }
+
+        public void AddRecordDB(Game game)
+        {
+            using (SqliteConnection conn = new SqliteConnection(Properties.Settings.Default.connString))
+            {
+                if (conn == null)
+                {
+                    throw new Exception("Connection String is null");
+                }
+
+                conn.Open();
+                SqliteCommand query = new SqliteCommand("INSERT INTO Games (Title, Genre, Publisher, ReleaseDate) VALUES ($title, $genre, $publisher, $date)", conn);
+                query.Parameters.AddWithValue("$title", game.Title);
+                query.Parameters.AddWithValue("$genre", game.Genre);
+                query.Parameters.AddWithValue("$publisher", game.Publisher);
+                query.Parameters.AddWithValue("$date", game.ReleaseDate.ToString("yyyy-MM-dd"));
+                query.ExecuteNonQuery();
             }
         }
     }
-
-    
 }
