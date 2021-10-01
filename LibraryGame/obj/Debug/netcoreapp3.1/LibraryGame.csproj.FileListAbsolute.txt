@@ -57,7 +57,7 @@ I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\LibraryGame.cspr
 I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\LibraryGame.dll
 I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\LibraryGame.pdb
 I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\LibraryGame.genruntimeconfig.cache
-I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\LibraryGame.csproj.AssemblyReference.cache
 I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\Pages\Add.g.cs
 I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\App.baml
 I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\Pages\Add.baml
+I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\LibraryGame.csproj.AssemblyReference.cache
