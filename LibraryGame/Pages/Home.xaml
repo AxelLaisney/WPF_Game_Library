@@ -26,33 +26,31 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Row="1" 
+        <ListView Grid.Row="1" 
                   Grid.Column="0" 
                   Grid.ColumnSpan="3" 
                   x:Name="GameGrid" 
-                  Height="400" 
+                  MaxHeight="400" 
                   Width="600"
-                  AutoGenerateColumns="True"
-                  AutoGeneratingColumn="GameGridAutoGeneratingColoumn"
-                  IsReadOnly="True"
-                  CanUserAddRows="False"
-                  ColumnWidth="*"
-                  Background="LightBlue"
-                  RowBackground="Aquamarine"
-                  RowHeaderWidth="0"
-                  >
-            <DataGrid.ColumnHeaderStyle>
-                <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                </Style>
-            </DataGrid.ColumnHeaderStyle>
-        </DataGrid>
+                  Background="Transparent"
+                  BorderThickness="0"
+                  ScrollViewer.CanContentScroll="True"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Height="auto" Orientation="Vertical">
+                        <Image Source="{Binding GameCover}" Grid.Row="0" Height="100" Width="100"/>
+                        <Label Content="{Binding Title}" Grid.Row="1"/>
+                    </StackPanel>
+                </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-        <Label x:Name="LabelTitle"
+            <Label x:Name="LabelTitle"
                Content="My Games Library"
-               Grid.Column="1"
+               Grid.Column="0"
                Grid.Row="0"
+               Grid.ColumnSpan="3"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center"
                FontSize="40"/>

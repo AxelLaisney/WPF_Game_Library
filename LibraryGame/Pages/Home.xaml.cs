@@ -60,7 +60,8 @@ namespace LibraryGame.Pages
 
         private void EditButton(object s, RoutedEventArgs e)
         {
-
+            Game selectedGame = (Game)GameGrid.SelectedItem;
+            Frame.Navigate(new Edit(Frame, GameVM, selectedGame));
         }
 
         private void DeleteButton(object s, RoutedEventArgs e)

@@ -5,7 +5,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <Style TargetType="Page" x:Key="Page-background">
-            <Setter Property="Background" Value="PaleTurquoise"/>
+            <Setter Property="Background" Value="#555252"/>
         </Style>
     </Application.Resources>
 </Application>

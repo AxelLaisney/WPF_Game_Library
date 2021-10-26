@@ -1,7 +1,9 @@
 ﻿using LibraryGame.Models;
 using LibraryGame.ViewModel;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +24,7 @@ namespace LibraryGame.Pages
     {
         GameViewModel GameVM;
         Frame Frame;
+        String ImgPath = "";
         public Add()
         {
             InitializeComponent();
@@ -37,16 +40,22 @@ namespace LibraryGame.Pages
         public void AddButton(object s, RoutedEventArgs e)
         {
             Game game = new Game();
-            if(Tbox_title.Text == "" || Tbox_genre.Text == "" || Tbox_publisher.Text == "" || Tbox_date.Text == "")
+            if(Tbox_title.Text == "" || Tbox_genre.Text == "" || Tbox_publisher.Text == "" || Tbox_date.Text == "" || ImgPath == "")
             {
                 MessageBox.Show("One of the field is empty!");
             }
             else
             {
+                Guid g = Guid.NewGuid();
+                String newImgName = g + System.IO.Path.GetExtension(ImgPath);
+                String FolderToSave = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Pictures\\ImageCache\\" + newImgName;
                 game.Title = Tbox_title.Text;
                 game.Genre = Tbox_genre.Text;
                 game.Publisher = Tbox_publisher.Text;
                 game.ReleaseDate = DateTime.Parse(Tbox_date.Text);
+                game.GameCoverName = newImgName;
+                File.Copy(ImgPath, FolderToSave);
+                game.GameCover = new BitmapImage(new Uri(FolderToSave, UriKind.Absolute));
                 GameVM.AddRecord(game);
                 MessageBox.Show("A game has been added!");
             }
@@ -81,6 +90,18 @@ namespace LibraryGame.Pages
             Tbox_date.FontStyle = FontStyles.Normal;
             Tbox_date.FontWeight = FontWeights.Normal;
         }
+
+        private void CoverButton(object s, RoutedEventArgs e)
+        {
+            OpenFileDialog Fd = new OpenFileDialog();
+            if(Fd.ShowDialog() == true)
+            {
+                ImgPath = Fd.FileName;
+                BitmapImage Img = new BitmapImage(new Uri(Fd.FileName, UriKind.Absolute));
+                this.ImgCover.Source = Img;
+            }
+        }
+
     }
 }
 
