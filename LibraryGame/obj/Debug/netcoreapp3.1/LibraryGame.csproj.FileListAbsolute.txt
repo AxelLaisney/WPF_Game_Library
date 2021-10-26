@@ -60,4 +60,6 @@ I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\LibraryGame.genr
 I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\Pages\Add.g.cs
 I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\App.baml
 I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\Pages\Add.baml
+I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\Pages\Edit.g.cs
+I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\Pages\Edit.baml
 I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\LibraryGame.csproj.AssemblyReference.cache

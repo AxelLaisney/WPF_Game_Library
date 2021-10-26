@@ -32,9 +32,11 @@ namespace LibraryGame.ViewModel
             {
                 List<Game> TempGamesList = e.OldItems.OfType<Game>().ToList();
                 GameRepository.DeleteRecordDB(TempGamesList[0].Id);
-            }else if(e.Action == NotifyCollectionChangedAction.Replace)
+            }
+            else if(e.Action == NotifyCollectionChangedAction.Replace)
             {
-
+                List<Game> TempGameList = e.NewItems.OfType<Game>().ToList();
+                GameRepository.EditRecordDB(TempGameList[0]);
             }
         }
 
@@ -65,6 +67,25 @@ namespace LibraryGame.ViewModel
             }
 
             Games.Add(game);
+        }
+
+        public void EditRecord(Game game)
+        {
+            if (game.Id < 0)
+            {
+                throw new Exception("Error: Negative ID");
+            }
+
+            int i = 0;
+            while(i < Games.Count)
+            {
+                if(Games[i].Id == game.Id)
+                {
+                    Games[i] = game;
+                    break;
+                }
+                i++;
+            }
         }
     }
 }

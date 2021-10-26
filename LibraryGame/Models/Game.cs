@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Media.Imaging;
 
 namespace LibraryGame.Models
 {
@@ -11,5 +12,7 @@ namespace LibraryGame.Models
         public string Genre { get; set; }
         public string Publisher { get; set; }
         public DateTime ReleaseDate { get; set; }
+        public BitmapImage GameCover { get; set; }
+        public string GameCoverName { get; set; }
     }
 }
