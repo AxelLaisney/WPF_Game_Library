@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-I:\Progs\wpf\LibraryGame_sl\LibraryGame\obj\Debug\netcoreapp3.1\
+D:\Prog\wpf\WPF_Game_Library\LibraryGame\obj\Debug\netcoreapp3.1\
 LibraryGame
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-I:\Progs\wpf\LibraryGame_sl\LibraryGame\App.xaml
+D:\Prog\wpf\WPF_Game_Library\LibraryGame\App.xaml
 41474111369
 
-12122651451
-212-147759310
+13-916155826
+2121724732893
 MainWindow.xaml;Pages\Add.xaml;Pages\Edit.xaml;Pages\Home.xaml;
 
-True
+False
 

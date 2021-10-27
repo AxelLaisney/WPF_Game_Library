@@ -46,23 +46,19 @@ namespace LibraryGame.Pages
             }
             else
             {
-                Guid g = Guid.NewGuid();
-                String newImgName = g + System.IO.Path.GetExtension(ImgPath);
-                String FolderToSave = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Pictures\\ImageCache\\" + newImgName;
                 game.Title = Tbox_title.Text;
                 game.Genre = Tbox_genre.Text;
                 game.Publisher = Tbox_publisher.Text;
                 game.ReleaseDate = DateTime.Parse(Tbox_date.Text);
-                game.GameCoverName = newImgName;
-                File.Copy(ImgPath, FolderToSave);
-                game.GameCover = new BitmapImage(new Uri(FolderToSave, UriKind.Absolute));
+                game.GameCover = new BitmapImage(new Uri(ImgPath, UriKind.Absolute));
                 GameVM.AddRecord(game);
-                MessageBox.Show("A game has been added!");
+                MessageBox.Show("A game has been added!", "Success!");
             }
         }
         public void BackButton(object s, RoutedEventArgs e)
         {
-            this.Frame.NavigationService.GoBack();
+            GameViewModel Gamevm = new GameViewModel();
+            this.Frame.Navigate(new Home(Frame, Gamevm));
         }
 
         private void Tbox_title_GotFocus(object s, RoutedEventArgs e)

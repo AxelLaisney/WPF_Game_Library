@@ -1,4 +1,5 @@
-﻿using LibraryGame.Models;
+﻿using LibraryGame.Helper;
+using LibraryGame.Models;
 using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
@@ -6,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media.Imaging;
 
+
 namespace LibraryGame.Repositories
 {
     public class GameRepository
     {
         public List<Game> gameRepository { get; set; }
+        private readonly BitmapImageConverters bitImageHelper = new BitmapImageConverters();
 
         public GameRepository()
         {
@@ -35,16 +38,15 @@ namespace LibraryGame.Repositories
 
                 while (data.Read())
                 {
-
+          
                     Game game = new Game();
                     game.Id = int.Parse(data["Id"].ToString());
                     game.Title = data["Title"].ToString();
                     game.Genre = data["Genre"].ToString();
                     game.Publisher = data["Publisher"].ToString();
                     game.ReleaseDate = data.GetDateTime(4);
-                    string ImgName = data["GameCover"].ToString();
-                    game.GameCover = new BitmapImage(new Uri(path + ImgName, UriKind.Absolute));
-                    game.GameCoverName = ImgName;
+                    BitmapImage img = bitImageHelper.Base64ToBitmapimage(data["GameCover"].ToString());
+                    game.GameCover = img;
                     listGames.Add(game);
                 }
                 return listGames;
@@ -69,6 +71,7 @@ namespace LibraryGame.Repositories
 
         public void AddRecordDB(Game game)
         {
+            string imgString = bitImageHelper.BitmapimageToBase64(game.GameCover);
             using (SqliteConnection conn = new SqliteConnection(Properties.Settings.Default.connString))
             {
                 if (conn == null)
@@ -82,13 +85,14 @@ namespace LibraryGame.Repositories
                 query.Parameters.AddWithValue("$genre", game.Genre);
                 query.Parameters.AddWithValue("$publisher", game.Publisher);
                 query.Parameters.AddWithValue("$date", game.ReleaseDate.ToString("yyyy-MM-dd"));
-                query.Parameters.AddWithValue("$gameCover", game.GameCoverName);
+                query.Parameters.AddWithValue("$gameCover", imgString);
                 query.ExecuteNonQuery();
             }
         }
 
         public void EditRecordDB(Game game)
         {
+            string imgString = bitImageHelper.BitmapimageToBase64(game.GameCover);
             using (SqliteConnection conn = new SqliteConnection(Properties.Settings.Default.connString))
             {
                 if (conn == null)
@@ -103,7 +107,7 @@ namespace LibraryGame.Repositories
                 query.Parameters.AddWithValue("$publisher", game.Publisher);
                 query.Parameters.AddWithValue("$date", game.ReleaseDate);
                 query.Parameters.AddWithValue("$id", game.Id);
-                query.Parameters.AddWithValue("gameCover", game.GameCoverName);
+                query.Parameters.AddWithValue("gameCover", imgString);
                 query.ExecuteNonQuery();
             }
         }

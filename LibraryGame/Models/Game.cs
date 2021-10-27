@@ -13,6 +13,5 @@ namespace LibraryGame.Models
         public string Publisher { get; set; }
         public DateTime ReleaseDate { get; set; }
         public BitmapImage GameCover { get; set; }
-        public string GameCoverName { get; set; }
     }
 }

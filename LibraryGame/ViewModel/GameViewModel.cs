@@ -65,7 +65,6 @@ namespace LibraryGame.ViewModel
             {
                 throw new ArgumentNullException("Error: argument null");
             }
-
             Games.Add(game);
         }
 
